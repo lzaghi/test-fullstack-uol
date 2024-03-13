@@ -15,4 +15,8 @@ public class ClienteService {
     public List<ClienteEntity> buscarTodosClientes() {
         return clienteRepository.findAll();
     }
+
+    public ClienteEntity adicionarCliente(ClienteEntity cliente) {
+        return clienteRepository.save(cliente);
+    }
 }
