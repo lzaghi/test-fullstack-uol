@@ -2,6 +2,7 @@ package br.com.backend.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
@@ -17,7 +18,7 @@ public class ClienteEntity {
     private Integer id;
 
     @Column(name = "nome")
-    @NotNull(message = "campo 'nome' é obrigatório")
+    @NotBlank(message = "campo 'nome' é obrigatório")
     private String nome;
 
     @Column(name = "email")

@@ -27,12 +27,28 @@ public class ClienteController {
 
     @PostMapping
     public ResponseEntity<ClienteEntity> adicionarCliente(@Valid @RequestBody ClienteEntity cliente) {
-        ClienteEntity novoCliente = clienteService.adicionarCliente(cliente);
+        ClienteEntity novoCliente = clienteService.adicionarOuAtualizarCliente(cliente);
         return ResponseEntity.status(HttpStatus.CREATED).body(novoCliente);
     }
 
+    @PutMapping
+    public ResponseEntity<Object> atualizarCliente(@Valid @RequestBody ClienteEntity cliente) {
+        Integer idCliente = cliente.getId();
+        if (idCliente == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("campo 'id' é obrigatório");
+        } else {
+            Optional<ClienteEntity> optionalCliente = clienteService.buscarClientePorId(idCliente);
+            if (optionalCliente.isPresent()) {
+                ClienteEntity clienteAtualizado= clienteService.adicionarOuAtualizarCliente(cliente);
+                return ResponseEntity.status(HttpStatus.OK).body(clienteAtualizado);
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente não encontrado");
+            }
+        }
+    }
+
     @DeleteMapping
-    public ResponseEntity<String> deletarCategoria(@PathParam("id") Integer id) {
+    public ResponseEntity<String> deletarCliente(@PathParam("id") Integer id) {
         Optional<ClienteEntity> cliente = clienteService.buscarClientePorId(id);
         if (cliente.isPresent()) {
             clienteService.deletarCliente(id);
@@ -40,6 +56,5 @@ public class ClienteController {
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente não encontrado");
         }
-
     }
 }

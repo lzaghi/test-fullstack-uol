@@ -21,7 +21,7 @@ public class ClienteService {
         return clienteRepository.findById(id);
     }
 
-    public ClienteEntity adicionarCliente(ClienteEntity cliente) {
+    public ClienteEntity adicionarOuAtualizarCliente(ClienteEntity cliente) {
         return clienteRepository.save(cliente);
     }
 
