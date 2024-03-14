@@ -8,6 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ListaClientesComponent } from './clientes/lista-clientes/lista-clientes.component';
 import { FormClientesComponent } from './clientes/form-clientes/form-clientes.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormClientesComponent } from './clientes/form-clientes/form-clientes.co
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

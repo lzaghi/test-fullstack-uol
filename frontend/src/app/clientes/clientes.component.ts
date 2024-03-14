@@ -15,6 +15,7 @@ export class ClientesComponent implements OnInit {
     this.recuperarClientes();
   }
 
+  isLoading = true;
   clientes: Cliente[] = []
 
   recuperarClientes() {
@@ -25,7 +26,8 @@ export class ClientesComponent implements OnInit {
           console.log(resposta)
           this.clientes = resposta
         },
-        (error) => console.error(error)
+        (error) => console.error(error),
+        () => this.isLoading = false
       );
   }
 }

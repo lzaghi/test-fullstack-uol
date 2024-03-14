@@ -9,4 +9,7 @@ import { Cliente } from '../clientes';
 export class ListaClientesComponent {
   @Input()
   clientes: Cliente[] = [];
+
+  @Input()
+  isLoading: boolean = true;
 }
