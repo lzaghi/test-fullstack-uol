@@ -21,12 +21,12 @@ public class ClienteEntity {
     @NotBlank(message = "campo 'nome' é obrigatório")
     private String nome;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     @NotNull(message = "campo 'email' é obrigatório")
     @Email(regexp = "^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+(\\.[a-z]+)?$", message = "formato de email inválido")
     private String email;
 
-    @Column(name = "cpf")
+    @Column(name = "cpf", unique = true)
     @NotNull(message = "campo 'cpf' é obrigatório")
     @Pattern(regexp = "^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$", message = "formato de CPF inválido")
     private String cpf;

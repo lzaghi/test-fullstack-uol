@@ -1,8 +1,7 @@
 package br.com.backend.advice;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -13,14 +12,6 @@ import java.util.Map;
 
 @RestControllerAdvice
 public class ApplicationExceptionHandler {
-
-//    @ExceptionHandler(MethodArgumentNotValidException.class)
-//    public ResponseEntity<String> handleEntradaInvalida(MethodArgumentNotValidException exception) {
-//        String errorMessage = exception.getBindingResult().getFieldError().getDefaultMessage();
-//        return ResponseEntity
-//                .status(HttpStatus.BAD_REQUEST)
-//                .body("Erro: " + errorMessage);
-//    }
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, String> handleEntradaInvalida(MethodArgumentNotValidException exception) {
@@ -29,5 +20,17 @@ public class ApplicationExceptionHandler {
             errorMap.put("erro no campo '"+erro.getField()+"'", erro.getDefaultMessage())
         );
         return errorMap;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public String handleEntradaRepetida(DataIntegrityViolationException exception) {
+        if (exception.getMessage().contains("email_UNIQUE")) {
+            return "Erro: email já cadastrado";
+        } else if (exception.getMessage().contains("cpf_UNIQUE")) {
+            return "Erro: CPF já cadastrado";
+        } else {
+            return "Erro: dados inválidos";
+        }
     }
 }
