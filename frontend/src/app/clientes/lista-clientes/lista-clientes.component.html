@@ -19,7 +19,7 @@
         <p>{{ formatarCPF(cliente.cpf!) }}</p>
         <p>{{ formatarTelefone(cliente.telefone!) }}</p>
         <p>{{ cliente.status }}</p>
-        <button>Editar</button>
+        <button (click)="editarCliente(cliente)">Editar</button>
         <mat-icon class="deleteIcon" (click)="openDeleteDialog(cliente.nome!, cliente.id!)">delete_outline</mat-icon>
       </div>
     </div>

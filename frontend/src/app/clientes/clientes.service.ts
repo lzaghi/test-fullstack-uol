@@ -7,10 +7,18 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ClientesService {
-
   constructor(private http: HttpClient) { }
 
+  cliente: Cliente = {}
   private baseUrl = 'http://localhost:8080';
+
+  setCliente(cliente: Cliente): void {
+    this.cliente = cliente;
+  }
+
+  getCliente(): Cliente {
+    return this.cliente;
+  }
 
   public recuperarClientes(): Observable<Cliente[]> {
     return this.http.get<Cliente[]>(`${this.baseUrl}/clientes`);
@@ -18,6 +26,10 @@ export class ClientesService {
 
   public adicionarCliente(cliente: Cliente): Observable<Cliente> {
     return this.http.post<Cliente>(`${this.baseUrl}/clientes`, cliente);
+  }
+
+  public atualizarCliente(cliente: Cliente): Observable<Cliente> {
+    return this.http.put<Cliente>(`${this.baseUrl}/clientes`, cliente);
   }
 
   public deletarCliente(id: number): Observable<any> {

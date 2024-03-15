@@ -1,5 +1,8 @@
-<p>Novo usuário</p>
-<p>Informe os campos a seguir para criar novo usuário:</p>
+<h3 *ngIf="!editando">Novo usuário</h3>
+<p *ngIf="!editando">Informe os campos a seguir para criar novo usuário:</p>
+
+<h2 *ngIf="editando">Editar usuário</h2>
+<p *ngIf="editando">Atualize os campos desejados:</p>
 
 <form [formGroup]="formGroup">
   <mat-form-field>
@@ -40,7 +43,8 @@
     <mat-error>O status é obrigatório</mat-error>
   </mat-form-field>
   
-  <button (click)="salvarCliente()" [disabled]="formGroup.invalid" type="submit">Criar</button>
+  <button *ngIf="!editando" (click)="salvarCliente()" [disabled]="formGroup.invalid" type="submit">Criar</button>
+  <button *ngIf="editando" (click)="editarCliente()" [disabled]="formGroup.invalid" type="submit">Atualizar</button>
   <button routerLink="/">Voltar</button>
 </form>
 

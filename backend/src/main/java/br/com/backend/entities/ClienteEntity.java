@@ -28,12 +28,12 @@ public class ClienteEntity {
 
     @Column(name = "cpf", unique = true)
     @NotNull(message = "campo 'cpf' é obrigatório")
-    @Pattern(regexp = "^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$", message = "formato de CPF inválido")
+    @Pattern(regexp = "^\\d{11}$", message = "formato de CPF inválido")
     private String cpf;
 
     @Column(name = "telefone")
     @NotNull(message = "campo 'telefone' é obrigatório")
-    @Pattern(regexp = "^\\(\\d{2}\\)\\d{4,5}-\\d{4}$", message = "formato de telefone inválido")
+    @Pattern(regexp = "^\\d{10,11}$", message = "formato de telefone inválido")
     private String telefone;
 
     @Column(name = "status")
