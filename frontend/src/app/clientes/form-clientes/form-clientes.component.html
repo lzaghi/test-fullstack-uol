@@ -1,1 +1,49 @@
-<p>form-clientes works!</p>
+<p>Novo usuário</p>
+<p>Informe os campos a seguir para criar novo usuário:</p>
+
+<form [formGroup]="formGroup">
+  <mat-form-field>
+    <mat-label>Nome </mat-label>
+    <input matInput formControlName="nome">
+    <mat-error>O nome é obrigatório</mat-error>
+  </mat-form-field>
+  
+  <mat-form-field>
+    <mat-label>Email </mat-label>
+    <input matInput formControlName="email">
+    <mat-error *ngIf="emailFormControl?.hasError('required')">O email é obrigatório</mat-error>
+    <mat-error *ngIf="emailFormControl?.hasError('pattern')">Email inválido</mat-error>
+  </mat-form-field>
+  
+  <mat-form-field>
+    <mat-label>CPF </mat-label>
+    <input matInput formControlName="cpf" mask="000.000.000-00">
+    <mat-error *ngIf="cpfFormControl?.hasError('required')">O CPF é obrigatório</mat-error>
+    <mat-error *ngIf="cpfFormControl?.hasError('pattern')">CPF inválido</mat-error>
+  </mat-form-field>
+  
+  <mat-form-field>
+    <mat-label>Telefone </mat-label>
+    <input matInput formControlName="telefone" required mask="(00)0000-0000||(00)00000-0000">
+    <mat-error *ngIf="telefoneFormControl?.hasError('required')">O telefone é obrigatório</mat-error>
+    <mat-error *ngIf="telefoneFormControl?.hasError('pattern')">Telefone inválido</mat-error>
+  </mat-form-field>
+  
+  <mat-form-field>
+    <mat-label>Status </mat-label>
+    <mat-select required formControlName="status">
+      <mat-option value="Ativo">Ativo</mat-option>
+      <mat-option value="Inativo">Inativo</mat-option>
+      <mat-option value="Aguardando ativação">Aguardando ativação</mat-option>
+      <mat-option value="Desativado">Desativado</mat-option>
+    </mat-select>
+    <mat-error>O status é obrigatório</mat-error>
+  </mat-form-field>
+  
+  <button (click)="salvarCliente()" [disabled]="formGroup.invalid" type="submit">Criar</button>
+  <button routerLink="/">Voltar</button>
+</form>
+
+<mat-spinner *ngIf="isLoading" diameter="40" strokeWidth="3"></mat-spinner>
+
+<p *ngIf="erro">{{erro}}</p>

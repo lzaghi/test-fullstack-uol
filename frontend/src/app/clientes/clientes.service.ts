@@ -14,4 +14,8 @@ export class ClientesService {
   public recuperarClientes() {
     return this.http.get<Cliente[]>(`${this.baseUrl}/clientes`);
   }
+
+  public adicionarCliente(cliente: Cliente) {
+    return this.http.post<Cliente>(`${this.baseUrl}/clientes`, cliente);
+  }
 }

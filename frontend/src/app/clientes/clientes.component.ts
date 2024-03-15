@@ -26,8 +26,8 @@ export class ClientesComponent implements OnInit {
           console.log(resposta)
           this.clientes = resposta
         },
-        (error) => console.error(error),
-        () => this.isLoading = false
+        (error) => console.error('aqui', error)
       );
+    this.isLoading = false
   }
 }
