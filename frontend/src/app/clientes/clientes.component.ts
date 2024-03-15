@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientesService } from './clientes.service';
 import { Cliente } from './clientes';
+import { EventServiceService } from './event-service.service';
 
 @Component({
   selector: 'app-clientes',
@@ -9,13 +10,16 @@ import { Cliente } from './clientes';
 })
 export class ClientesComponent implements OnInit {
 
-  constructor(private clientesService: ClientesService) { }
+  constructor(private clientesService: ClientesService,
+              private eventService: EventServiceService) { }
 
   ngOnInit(): void {
     this.recuperarClientes();
+    this.eventService.alteracaoRegistros.subscribe(() => this.onAlteracaoRegistros());
   }
 
-  isLoading = true;
+  isLoading: boolean = true;
+  erro: string = '';
   clientes: Cliente[] = []
 
   recuperarClientes() {
@@ -25,9 +29,17 @@ export class ClientesComponent implements OnInit {
         (resposta) => {
           console.log(resposta)
           this.clientes = resposta
+          this.isLoading = false
         },
-        (error) => console.error('aqui', error)
+        (error) => {
+          console.error('aqui', error)
+          this.erro = 'Algo deu errado.'
+          this.isLoading = false
+        }
       );
-    this.isLoading = false
+  }
+
+  onAlteracaoRegistros(): void {
+    this.recuperarClientes();
   }
 }

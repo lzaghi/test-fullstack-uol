@@ -10,7 +10,7 @@ import { ClientesService } from '../clientes.service';
 })
 export class FormClientesComponent {
   isLoading: boolean = false;
-  erro = '';
+  erro: string = '';
   formGroup: FormGroup;
 
   constructor(private clientesService: ClientesService) {
@@ -45,6 +45,7 @@ export class FormClientesComponent {
       .adicionarCliente(this.formGroup.value)
       .subscribe(
         () => {
+          this.isLoading = false;
           alert('Cliente cadastrado com sucesso!');
           if (this.directiveForm) {
             this.directiveForm.resetForm();
@@ -57,8 +58,9 @@ export class FormClientesComponent {
           } else {
             this.erro = 'Algo deu errado.';
           }
+          this.isLoading = false;
         },
       );
-    this.isLoading = false;
+    
   }
 }
