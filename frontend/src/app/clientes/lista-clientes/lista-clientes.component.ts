@@ -21,9 +21,6 @@ export class ListaClientesComponent implements OnInit {
   @Input()
   isLoading: boolean = true;
 
-  @Input()
-  erro: string = '';
-
   @Output()
   alteracaoRegistros: EventEmitter<void> = new EventEmitter<void>();
 

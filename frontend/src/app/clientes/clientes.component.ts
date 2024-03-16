@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClientesService } from './clientes.service';
 import { Cliente } from './clientes';
 import { EventServiceService } from './event-service.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-clientes',
@@ -11,7 +12,8 @@ import { EventServiceService } from './event-service.service';
 export class ClientesComponent implements OnInit {
 
   constructor(private clientesService: ClientesService,
-              private eventService: EventServiceService) { }
+              private eventService: EventServiceService,
+              private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.recuperarClientes();
@@ -19,7 +21,6 @@ export class ClientesComponent implements OnInit {
   }
 
   isLoading: boolean = true;
-  erro: string = '';
   clientes: Cliente[] = []
 
   recuperarClientes() {
@@ -27,14 +28,14 @@ export class ClientesComponent implements OnInit {
       .recuperarClientes()
       .subscribe(
         (resposta) => {
-          console.log(resposta)
           this.clientes = resposta
           this.isLoading = false
         },
-        (error) => {
-          console.error('aqui', error)
-          this.erro = 'Algo deu errado.'
+        (_error) => {
           this.isLoading = false
+          this.toastr.error('Erro ao recuperar clientes', 'Problemas com o servidor', {
+            progressBar: true,
+          });
         }
       );
   }

@@ -3,6 +3,7 @@ import { Cliente } from '../clientes';
 import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { ClientesService } from '../clientes.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-form-clientes',
@@ -10,7 +11,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./form-clientes.component.scss']
 })
 export class FormClientesComponent implements OnInit {
-  constructor(private clientesService: ClientesService, private router: Router,) {
+  constructor(private clientesService: ClientesService,
+              private router: Router,
+              private toastr: ToastrService) {
     this.formGroup = new FormGroup({
       nome: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.pattern('[a-z0-9.]+@[a-z0-9]+\\.[a-z]+(\\.[a-z]+)?$')]),
@@ -36,7 +39,6 @@ export class FormClientesComponent implements OnInit {
 
   formGroup: FormGroup;
   isLoading: boolean = false;
-  erro: string = '';
 
   cliente: Cliente = {};
   editando: boolean = false;
@@ -57,24 +59,28 @@ export class FormClientesComponent implements OnInit {
 
   salvarCliente(): void {
     this.isLoading = true;
-    this.erro = '';
 
     this.clientesService
       .adicionarCliente(this.formGroup.value)
       .subscribe(
         () => {
           this.isLoading = false;
-          alert('Cliente cadastrado com sucesso!');
+          this.toastr.success('Cliente cadastrado com sucesso!', '', {
+            progressBar: true,
+          });
           if (this.directiveForm) {
             this.directiveForm.resetForm();
           }
         },
         (error) => {
-          console.error('aquii', error);
           if (error.status === 400) {
-            this.erro = error.error;
+            this.toastr.error(error.error, '', {
+              progressBar: true,
+            });
           } else {
-            this.erro = 'Algo deu errado.';
+            this.toastr.error('Erro ao cadastrar cliente', 'Problemas com o servidor', {
+              progressBar: true,
+            });
           }
           this.isLoading = false;
         },
@@ -83,22 +89,26 @@ export class FormClientesComponent implements OnInit {
 
   editarCliente(): void {
     this.isLoading = true;
-    this.erro = '';
 
     this.clientesService
       .atualizarCliente({id: this.cliente.id, ...this.formGroup.value})
       .subscribe(
         () => {
           this.isLoading = false;
-          alert('Cliente atualizado com sucesso!');
+          this.toastr.success('Cliente atualizado com sucesso!', '', {
+            progressBar: true,
+          });
           this.router.navigate(['/']);
         },
         (error) => {
-          console.error('aquii', error);
           if (error.status === 400) {
-            this.erro = error.error;
+            this.toastr.error(error.error, '', {
+              progressBar: true,
+            });
           } else {
-            this.erro = 'Algo deu errado.';
+            this.toastr.error('Erro ao atualizar cliente', 'Problemas com o servidor', {
+              progressBar: true,
+            });
           }
           this.isLoading = false;
         },

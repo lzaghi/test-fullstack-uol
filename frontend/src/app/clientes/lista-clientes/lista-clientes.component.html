@@ -4,9 +4,7 @@
 
 <mat-spinner *ngIf="isLoading" diameter="40" strokeWidth="3"></mat-spinner>
 
-<p *ngIf="!isLoading && erro">Algo deu errado.</p>
-
-<div *ngIf="!isLoading && !erro" >
+<div *ngIf="!isLoading" >
   <p *ngIf="!clientes.length">
     Nenhum cliente cadastrado!
   </p>

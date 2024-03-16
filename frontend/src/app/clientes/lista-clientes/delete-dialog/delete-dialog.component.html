@@ -7,4 +7,3 @@
   <button mat-button (click)="confirmarDelecao()">DELETAR</button>
 </mat-dialog-actions>
 <mat-spinner *ngIf="isLoading" diameter="40" strokeWidth="3"></mat-spinner>
-<mat-dialog-content *ngIf="!isLoading && erro">{{erro}}</mat-dialog-content>
