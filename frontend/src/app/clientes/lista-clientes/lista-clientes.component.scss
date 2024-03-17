@@ -140,7 +140,7 @@ mat-spinner {
 
       .botoes {
         display: flex;
-        align-items:end;
+        align-items: flex-end;
         align-self: end;
 
         .botaoEditar {
@@ -152,6 +152,56 @@ mat-spinner {
         .botaoDeletar {
           cursor: pointer;
           margin-left: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .lista {
+    .cliente {
+      padding-inline: 5%;
+      justify-content: space-between;
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .lista {
+    .cliente {
+      justify-content: space-between;
+      padding-inline: 0;
+
+      .coluna1 {
+        flex-direction: row;
+        width: 50%;
+        align-items: center;
+        justify-content: space-between;
+
+        .nome-email {
+          margin-bottom: 0;
+          margin-left: 7%;
+        }
+
+        .cpf-tel {
+          margin-right: 7%;
+        }
+      }
+      
+      .coluna2 {
+        flex-direction: row;
+        width: 50%;
+        align-items: center;
+        justify-content: space-between;
+
+        .status {
+          margin-left: 17%;
+        }
+
+        .botoes {
+          align-items: center;
+          margin-right: 5%;
         }
       }
     }

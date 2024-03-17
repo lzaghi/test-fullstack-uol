@@ -11,7 +11,7 @@
 mat-spinner {
   position: absolute;
   bottom: 10px;
-  right: 20px;
+  left: 285px;
 }
 
 .cabecalho {
@@ -51,4 +51,14 @@ mat-form-field {
   height: 40px;
   width: 115px;
   margin: 10px 0 0 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    @include position.desktop();
+  }
+
+  mat-form-field {
+    width: 350px;
+  }
 }

@@ -16,7 +16,7 @@ export class FormClientesComponent implements OnInit {
               private toastr: ToastrService) {
     this.formGroup = new FormGroup({
       nome: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.pattern('[a-z0-9.]+@[a-z0-9]+\\.[a-z]+(\\.[a-z]+)?$')]),
+      email: new FormControl('', [Validators.required, Validators.pattern('[a-z0-9._-]+@[a-z0-9]+\\.[a-z]+(\\.[a-z]+)?$')]),
       cpf: new FormControl('', [Validators.required, Validators.pattern('^\\d{11}$')]),
       telefone: new FormControl('', [Validators.required, Validators.pattern('^\\d{10,11}$')]),
       status: new FormControl('', [Validators.required])
