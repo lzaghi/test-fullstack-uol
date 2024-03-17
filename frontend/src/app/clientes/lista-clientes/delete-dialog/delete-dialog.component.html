@@ -1,9 +1,11 @@
-<h2 mat-dialog-title>O cliente <b>{{nome}}</b> será deletado</h2>
-<mat-dialog-content>
-  Essa ação é irreversível. Você tem certeza de que deseja continuar?
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button (click)="cancelarDelecao()">Cancelar</button>
-  <button mat-button (click)="confirmarDelecao()">DELETAR</button>
-</mat-dialog-actions>
-<mat-spinner *ngIf="isLoading" diameter="40" strokeWidth="3"></mat-spinner>
+<div class="container">
+  <h2 mat-dialog-title>O cliente <b>{{nome}}</b> será deletado</h2>
+  <mat-dialog-content>
+    Esta ação é irreversível. Você tem certeza de que deseja continuar?
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button class="botaoCancelar" mat-button (click)="cancelarDelecao()">Cancelar</button>
+    <button class="botaoDeletar" mat-button (click)="confirmarDelecao()">DELETAR</button>
+  </mat-dialog-actions>
+  <mat-spinner *ngIf="isLoading" diameter="40" strokeWidth="3"></mat-spinner> 
+</div>

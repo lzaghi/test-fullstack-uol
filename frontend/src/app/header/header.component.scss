@@ -1,0 +1,32 @@
+@use '../scss/position';
+
+.img-container {
+  background-color: var(--cinza-uol);
+  display: flex;
+  height: 70px;
+  align-items: center;
+
+  img {
+    margin: 0 auto;
+    height: 40px;
+  }
+}
+
+.title-container {
+  @include position.mobile();
+  border-bottom: 1px solid lightgray;
+  align-items: center;
+  margin-top: 40px;
+
+  mat-icon {
+    font-size: 40px;
+    width: auto;
+    height: auto;
+  }
+
+  p {
+    color: var(--cinza-uol);
+    margin-left: 15px;
+    font-size: 30px;
+  }
+}

@@ -1,27 +1,41 @@
-<p>Listagem de usuários</p>
-<p>Escolha um cliente para visualizar os detalhes</p>
-<button routerLink="/registro">Novo cliente</button>
+<div class="cabecalho">
+  <p class="titulo">Listagem de usuários</p>
+  <p class="subtitulo">Escolha um cliente para visualizar os detalhes</p>
+  <button routerLink="/registro">Novo cliente</button>
+</div>
 
 <mat-spinner *ngIf="isLoading" diameter="40" strokeWidth="3"></mat-spinner>
 
-<div *ngIf="!isLoading" >
-  <p *ngIf="!clientes.length">
+<div class="lista" *ngIf="!isLoading" >
+  <p class="aviso" *ngIf="!clientes.length">
     Nenhum cliente cadastrado!
   </p>
 
   <div *ngIf="clientes.length">
-    <div *ngFor="let cliente of clientes">
-      <div>
-        <p>{{ cliente.nome }}</p>
-        <p>{{ cliente.email }}</p>
-        <p>{{ formatarCPF(cliente.cpf!) }}</p>
-        <p>{{ formatarTelefone(cliente.telefone!) }}</p>
-        <p>{{ cliente.status }}</p>
-        <button (click)="editarCliente(cliente)">Editar</button>
-        <mat-icon class="deleteIcon" (click)="openDeleteDialog(cliente.nome!, cliente.id!)">delete_outline</mat-icon>
+    <div class="scroll">
+      <div *ngFor="let cliente of clientes">
+        <div class="cliente">
+          <div class="coluna1">
+            <div class="nome-email">
+              <p class="nome">{{ cliente.nome }}</p>
+              <p class="email">{{ cliente.email }}</p>
+            </div>
+            <div class="cpf-tel">
+              <p class="cpf">{{ formatarCPF(cliente.cpf!) }}</p>
+              <p class="telefone">{{ formatarTelefone(cliente.telefone!) }}</p>
+            </div>
+          </div>
+          <div class="coluna2">
+            <p class="status {{cliente.status?.substring(0, 5)}}">{{ cliente.status }}</p>
+            <div class="botoes">
+              <button class="botaoEditar" (click)="editarCliente(cliente)">Editar</button>
+              <mat-icon class="botaoDeletar" (click)="openDeleteDialog(cliente.nome!, cliente.id!)">delete_outline</mat-icon>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <p *ngIf="clientes.length === 1">Exibindo {{ clientes.length }} cliente</p>
-    <p *ngIf="clientes.length > 1">Exibindo {{ clientes.length }} clientes</p>
+    <p class="counter" *ngIf="clientes.length === 1">Exibindo {{ clientes.length }} cliente</p>
+    <p class="counter" *ngIf="clientes.length > 1">Exibindo {{ clientes.length }} clientes</p>
   </div>
 </div>

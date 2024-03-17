@@ -1,0 +1,49 @@
+.container {
+  width: 300px;
+  max-width: 300px;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+mat-spinner {
+  position: absolute;
+  bottom: 22px;
+  left: 22px;
+}
+
+h2 {
+  word-break: break-word;
+  margin-bottom: 10px;
+  font-size: 18px !important;
+  line-height: 1.1 !important;
+}
+
+mat-dialog-content {
+  font-size: 16px !important;
+  line-height: 1.1 !important;
+}
+
+mat-dialog-actions {
+  justify-content: end;
+}
+
+button {
+  font-size: 15px;
+
+  &:hover {
+    filter: grayscale(0.3);
+  }
+}
+
+.botaoCancelar {
+  background-color: rgb(245, 245, 245);
+}
+
+.botaoDeletar {
+  background-color: var(--inativo);
+  color: white !important;
+  font-weight: 500;
+  margin-right: 20px;
+}

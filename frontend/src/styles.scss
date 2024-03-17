@@ -37,4 +37,24 @@ $frontend-theme: mat.define-light-theme((
 @import 'ngx-toastr/toastr';
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+:root {
+  --cinza-uol: #333333;
+  --amarelo-uol: #e29933;
+  --cinza-escuro: #646668;
+  --cinza-claro: #888888;
+  --ativo: #4aad5b;
+  --inativo: #d73240;
+  --aguardando: #d3a710;
+  --desativado: #d2d2d2;
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, button {
+  font-family: "Helvetica Neue", Roboto, sans-serif;
+}

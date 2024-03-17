@@ -44,8 +44,6 @@ export class ListaClientesComponent implements OnInit {
   openDeleteDialog(nome: string, id: number): void {
     this.dialog.open(DeleteDialogComponent, {
       data: { nome, id },
-      height: '200px',
-      width: '300px',
     });
   }
 }

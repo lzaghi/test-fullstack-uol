@@ -1,0 +1,42 @@
+@mixin yellowBg() {
+  background-color: var(--amarelo-uol);
+  border: 1px solid var(--amarelo-uol);
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
+  transition: 0.2s;
+
+  &:hover {
+    filter: grayscale(0.3);
+  }
+
+  &:enabled {
+    cursor: pointer;
+  }
+
+  &:disabled {
+    filter: opacity(0.5);
+  }
+}
+
+@mixin whiteBg() {
+  background-color: white;
+  border: 1px solid var(--amarelo-uol);
+  border-radius: 3px;
+  color: var(--amarelo-uol);
+  font-size: 16px;
+  transition: 0.2s;
+
+  &:hover {
+    background-color: var(--amarelo-uol);
+    color: white;
+  }
+
+  &:enabled {
+    cursor: pointer;
+  }
+
+  &:disabled {
+    filter: opacity(0.3);
+  }
+}

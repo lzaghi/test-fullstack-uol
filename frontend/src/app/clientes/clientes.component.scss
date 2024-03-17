@@ -1,0 +1,7 @@
+@use '../scss/position';
+
+app-lista-clientes {
+  @include position.mobile();
+  flex-direction: column;
+}
+

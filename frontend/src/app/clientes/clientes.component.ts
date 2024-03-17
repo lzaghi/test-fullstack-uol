@@ -29,7 +29,7 @@ export class ClientesComponent implements OnInit {
       .subscribe(
         (resposta) => {
           this.clientes = resposta
-          this.isLoading = false
+          this.isLoading = false;
         },
         (_error) => {
           this.isLoading = false
