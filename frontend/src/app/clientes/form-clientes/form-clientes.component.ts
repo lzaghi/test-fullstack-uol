@@ -4,6 +4,7 @@ import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular
 import { ClientesService } from '../clientes.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-form-clientes',
@@ -25,7 +26,7 @@ export class FormClientesComponent implements OnInit {
   
   ngOnInit(): void {
     this.cliente = this.clientesService.getCliente()
-    if (this.cliente.id) {
+    if (this.cliente?.id) {
       this.editando = true;
       this.formGroup.setValue({
         nome: this.cliente.nome,

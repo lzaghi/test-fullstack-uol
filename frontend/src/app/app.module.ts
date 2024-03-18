@@ -32,6 +32,9 @@ import { ToastrModule } from 'ngx-toastr';
     FormClientesComponent,
     DeleteDialogComponent
   ],
+  exports: [
+    HeaderComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

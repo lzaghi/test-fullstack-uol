@@ -12,11 +12,11 @@ export class ClientesService {
   cliente: Cliente = {}
   private baseUrl = 'http://localhost:8080';
 
-  setCliente(cliente: Cliente): void {
+  public setCliente(cliente: Cliente): void {
     this.cliente = cliente;
   }
 
-  getCliente(): Cliente {
+  public getCliente(): Cliente {
     return this.cliente;
   }
 
