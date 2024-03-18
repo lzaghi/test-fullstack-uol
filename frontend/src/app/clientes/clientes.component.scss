@@ -1,0 +1,12 @@
+@use '../scss/position';
+
+app-lista-clientes {
+  @include position.mobile();
+  flex-direction: column;
+}
+
+@media screen and (min-width: 768px) {
+  app-lista-clientes {
+    @include position.desktop();
+  }
+}

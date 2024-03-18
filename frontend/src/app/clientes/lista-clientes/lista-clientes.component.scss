@@ -1,0 +1,209 @@
+@use '../../scss/button';
+
+mat-spinner {
+  margin: 30px auto 0;
+}
+
+.cabecalho {
+  margin-top: 15px;
+  position: relative;
+
+  .titulo {
+    color: var(--cinza-escuro);
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 0;
+  }
+
+  .subtitulo {
+    color: var(--cinza-claro);
+    font-size: 16px;
+    margin: 15px 0 30px;
+  }
+
+  button {
+    @include button.yellowBg();
+    height: 35px;
+    width: 115px;
+    position: absolute;
+    top: 15px;
+    right: 0;
+  }
+}
+
+.lista {
+  flex-grow: 1;
+
+  .scroll {
+    max-height: calc(100vh - 400px);
+    overflow: auto;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: lightgray;
+      border-radius: 10px;
+
+      &:hover {
+        background-color: var(--cinza-claro);
+      }
+    }
+  }
+
+  .aviso, .counter {
+    color: var(--cinza-claro);
+    font-size: 16px;
+  }
+
+  .cliente {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    padding: 15px;
+
+    p {
+      color: var(--cinza-claro);
+      margin: 0;
+    }
+
+    .nome, .cpf { 
+      font-weight: 500;
+    }
+
+    .coluna1 {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-right: 10px;
+
+      .nome-email {
+        margin-bottom: 7px;
+        word-break: break-word;
+      }
+    }
+
+    .coluna2{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .status {
+        position: relative;
+        margin-left: 15px;
+      }
+
+      %circle {
+        content: '';
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin-right: 10px;
+        position: absolute;
+        left: -15px;
+        top: 4px;
+      }
+
+      
+      .Ativo {
+        &::before {
+          @extend %circle;
+          background-color: var(--ativo);
+        }
+      }
+
+      .Inati {
+        &::before {
+          @extend %circle;
+          background-color: var(--inativo);
+        }
+      }
+
+      .Aguar {
+        &::before {
+          @extend %circle;
+          background-color: var(--aguardando);
+        }
+      }
+
+      .Desat {
+        &::before {
+          @extend %circle;
+          background-color: var(--desativado);
+        }
+      }
+
+      .botoes {
+        display: flex;
+        align-items: flex-end;
+        align-self: end;
+
+        .botaoEditar {
+          @include button.whiteBg();
+          height: 40px;
+          width: 115px;
+        }
+      
+        .botaoDeletar {
+          cursor: pointer;
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .lista {
+    .cliente {
+      padding-inline: 5%;
+      justify-content: space-between;
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .lista {
+    .cliente {
+      justify-content: space-between;
+      padding-inline: 0;
+
+      .coluna1 {
+        flex-direction: row;
+        width: 50%;
+        align-items: center;
+        justify-content: space-between;
+
+        .nome-email {
+          margin-bottom: 0;
+          margin-left: 7%;
+        }
+
+        .cpf-tel {
+          margin-right: 7%;
+        }
+      }
+      
+      .coluna2 {
+        flex-direction: row;
+        width: 50%;
+        align-items: center;
+        justify-content: space-between;
+
+        .status {
+          margin-left: 17%;
+        }
+
+        .botoes {
+          align-items: center;
+          margin-right: 5%;
+        }
+      }
+    }
+  }
+}

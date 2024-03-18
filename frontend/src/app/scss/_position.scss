@@ -1,0 +1,11 @@
+@mixin mobile() {
+  display: flex;
+  margin-inline: auto;
+  width: calc(100vw - 40px);
+  max-width: 350px;
+}
+
+@mixin desktop() {
+  width: calc(100vw - 400px);
+  max-width: 1200px;
+}

@@ -1,0 +1,64 @@
+@use '../../scss/position';
+@use '../../scss/button';
+
+.container {
+  @include position.mobile();
+  flex-direction: column;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+mat-spinner {
+  position: absolute;
+  bottom: 10px;
+  left: 285px;
+}
+
+.cabecalho {
+  margin-top: 15px;
+  position: relative;
+
+  .titulo {
+    color: var(--cinza-escuro);
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 0;
+  }
+
+  .subtitulo {
+    color: var(--cinza-claro);
+    font-size: 16px;
+    margin: 15px 0 30px;
+  }
+}
+
+mat-form-field {
+  display: block;
+  margin-bottom: 6px;
+  width: auto;
+  padding: 0;
+}
+
+.botaoCriar, .botaoAtualizar {
+  @include button.yellowBg();
+  height: 40px;
+  width: 115px;
+  margin-top: 10px;
+}
+
+.botaoVoltar {
+  @include button.whiteBg();
+  height: 40px;
+  width: 115px;
+  margin: 10px 0 0 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    @include position.desktop();
+  }
+
+  mat-form-field {
+    width: 350px;
+  }
+}
