@@ -35,7 +35,8 @@ Certifique-se também de ter as portas 3306, 8080 e 4200 desocupadas
 
 1. Clone o repositório e entre no diretório
 ```bash
-  cd test-fullstack
+  git clone git@github.com:lzaghi/test-fullstack-uol.git
+  cd test-fullstack-uol
 ```
 
 2. A partir da raiz do projeto, suba os containeres do banco de dados, back e front
