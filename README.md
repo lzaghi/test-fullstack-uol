@@ -264,7 +264,7 @@ Em caso de erro - status 404:
 <details open>
 <summary style="font-weight: bold;">Exemplo de uso</summary>
 
-<img src="assets/front-uol.gif" alt="GIF demonstrativo">
+<img src="assets/demo-uol.gif" alt="GIF demonstrativo">
 
 </details>
 
